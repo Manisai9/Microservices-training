@@ -1,0 +1,19 @@
+server:
+    port: 7070
+spring:
+    application:
+        name: Gateway
+zuul:
+    routes:
+        books-services:
+            path: /books/**
+            url: http://localhost:9090/
+            stripPrefix: false
+        customer-service:
+            path: /**
+            url: http://localhost:8080/
+            stripPrefix: false
+    sensitiveHeaders: Cookie,Set-Cookie
+    host:
+        connect-timeout-millis: 10000
+        socket-timeout-millis: 1000000
